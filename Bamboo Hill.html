@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamboo Hill Capital | 昊竹投资</title>
+    <style>
+        /* 1. 核心配色：加深了绿色背景 */
+        :root {
+            --primary-gold: #b08d57;    
+            --light-green-bg: #e2ede4; /* 加深后的浅绿色 */
+            --soft-white: #f8faf8;
+            --text-dark: #1a2b1a;      /* 统一的主文本颜色 */
+            --container-width: 1200px;
+            --nav-font-size: 16px;     /* 目录字体高度 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 加深质感的绿色纹理背景 */
+            background: 
+                radial-gradient(circle at top, var(--soft-white) 0%, var(--light-green-bg) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3FfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3F/filter%3E%3Frect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            font-family: "Optima", "Baskerville", "Georgia", serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* 2. 布局容器 */
+        .layout-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 3. 头部布局 */
+        header {
+            padding-top: 60px;
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end; 
+        }
+
+        .logo-container img {
+            height: 166px;
+            width: auto;
+            display: block;
+            /* 关键修改：向下移动距离等于目录字体高度 */
+            position: relative;
+            top: var(--nav-font-size); 
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+            padding-bottom: 10px; 
+        }
+
+        .nav-menu li {
+            font-size: var(--nav-font-size);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: rgba(26, 43, 26, 0.6);
+            transition: all 0.4s ease;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .nav-menu li:hover, .nav-menu li.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-menu li::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            bottom: -6px;
+            left: 0;
+            background: var(--primary-gold);
+            transition: width 0.4s ease;
+        }
+
+        .nav-menu li.active::after {
+            width: 100%;
+        }
+
+        /* 4. 背景图展示区 */
+        .hero-section {
+            margin-top: 5px;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 520px;
+            overflow: hidden;
+            border-radius: 1px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 2s ease;
+        }
+
+        /* 5. 内容区域：统一文字风格 */
+        main {
+            padding: 80px 0 100px;
+        }
+
+        .content-card {
+            text-align: center;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 统一Home描述和Contact地址的文字样式 */
+        .description-text {
+            font-size: 19px; /* 统一字号 */
+            font-weight: 400; /* 统一字重 */
+            color: var(--text-dark); /* 统一颜色 */
+            line-height: 2; /* 统一行高 */
+            max-width: 850px;
+            margin: 0 auto;
+            letter-spacing: 0.3px;
+        }
+
+        /* 特别的Email地址样式保持不变 */
+        .email-link {
+            display: inline-block;
+            margin-top: 35px;
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 400;
+            padding-bottom: 3px;
+            border-bottom: 1.5px solid var(--primary-gold);
+            transition: 0.3s;
+        }
+
+        .email-link:hover {
+            color: var(--text-dark);
+            border-bottom-color: var(--text-dark);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 1024px) {
+            header { flex-direction: column; align-items: center; gap: 40px; }
+            .logo-container img { height: 120px; top: 0; } /* 移动端重置位移 */
+            .nav-menu { padding-bottom: 0; }
+            .image-wrapper { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="layout-container">
+        <!-- 头部：Logo位移已处理 -->
+        <header>
+            <div class="logo-container">
+                <img src="./logo.png" alt="Bamboo Hill Capital">
+            </div>
+            <ul class="nav-menu">
+                <li id="nav-home" class="active" onclick="switchTab('home')">Home</li>
+                <li id="nav-contact" onclick="switchTab('contact')">Contact Us</li>
+            </ul>
+        </header>
+
+        <!-- 背景图 -->
+        <section class="hero-section">
+            <div class="image-wrapper">
+                <img src="./bg.png" id="hero-img" alt="Bamboo Hill Capital landscape">
+            </div>
+        </section>
+
+        <!-- 文字内容：Home与Contact文字格式已完全统一 -->
+        <main>
+            <div class="content-card">
+                <!-- Home Content -->
+                <div id="home" class="tab-content active">
+                    <p class="description-text">
+                        Bamboo Hill Capital, established in 2023, is an institutional asset management firm based in Hong Kong, regulated by the Hong Kong Securities and Futures Commission (Type 9 Asset Management).
+                    </p>
+                </div>
+
+                <!-- Contact Content -->
+                <div id="contact" class="tab-content">
+                    <div class="description-text">
+                        <p>Bamboo Hill Capital Limited</p>
+                        <p>Room 8608C, 86F, International Chamber of Commerce,</p>
+                        <p>1 Austin Road West, Kowloon, Hong Kong</p>
+                    </div>
+                    <a href="mailto:linda@bamboohillinvestment.com" class="email-link">
+                        linda@bamboohillinvestment.com
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+
+            document.querySelectorAll('.nav-menu li').forEach(l => l.classList.remove('active'));
+            document.getElementById('nav-' + tabId).classList.add('active');
+
+            const img = document.getElementById('hero-img');
+            img.style.transform = (tabId === 'contact') ? 'scale(1.05)' : 'scale(1)';
+        }
+    </script>
+</body>
+</html>
